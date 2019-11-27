@@ -1,31 +1,62 @@
 # This is an employee class and it is a parent class
-# ok
-# usman bhai ap ko mari request received ho rhi han.
+# This function will get only integer value
+employee_designations = ("Manager", "Supervisor", "Supervisor Backup", "Sales Man", "Office Boy")
+
+
+def input_number(message):
+    while True:
+        try:
+            user_input = int(input(message))
+
+        except ValueError:
+            print("Not an integer value! Try again")
+            continue
+        else:
+            return user_input
+        break
+
+
+def designation():
+    while True:
+
+        choice = input_number("Chose Designation\n1-Manager\n2-Supervisor\n3-Supervisor Backup\n4-Sales Man\n5-Office Boy")
+        if choice > 0 and choice < 6:
+            return employee_designations[choice-1]
+            break
+        else:
+            print("value must be integer from 1 - 5")
+
 
 
 class Employee:
+    e_id = 0
 
-    def __init__(self, id, nam, des, sal, rep, exp):
-        self.Employee_Id = id
+    def __init__(self, nam, des, sal, exp, rep=None):
+
         self.Name = nam
         self.Roll = des
         self.Salary = sal
         self.Report = rep
         self.Experience = exp
         self.Manger_Remarks = "none"
-#new commentt by me
+        self.employee_id = 0
+# new comment by me
+
     def showemployees(self, lst):
         print("--------------------------------------------")
         print("            All Employees Data")
         print("--------------------------------------------")
         for i in lst:
-            print("Employee ID = ", i.Employee_Id)
+            print("Employee ID = ", i.employee_id)
             print("Employee Name = ", i.Name)
             print("Employee Designation = ", i.Roll)
             print("Employee Report = ", i.Report)
             print("Employee Experience = ", i.Experience)
             print("Manger Remarks = ", i.Manger_Remarks)
             print("--------------------------------------------")
+
+    def set_id(self, id):
+        self.employee_id = id
 
 
 class EmployeeManager(Employee):
@@ -117,23 +148,26 @@ def add_employee():
     print("--------------------------------------------")
     print("            Create new employee")
     print("--------------------------------------------")
-    employee_id = int(input("Enter Employee ID : "))
     name = input("Enter Name :")
-    roll = input("Enter Employee designation : ")
+    # roll = input("Enter Employee designation : ")
+    roll = designation()
+
     experience = 0
-    salary = int(input("Enter Employee Salary :"))
+    salary = input_number("Enter your salary")
     print("--------------------------------------------")
-    return employee_id, name, roll, experience, salary
+    return name, roll, experience, salary
 
 
 def add_new_employee():
-    a, b, c, d, e = add_employee()
-    add_employe = Employee(a, b, c, d, "none", e)
-    Employee_List.append(add_employe)
+    name, roll, experience, salary = add_employee()
+    employee = Employee(name, roll, experience, salary)
+    employee.set_id(Employee.e_id + 1)
+    Employee.e_id = Employee.e_id + 1
+    Employee_List.append(employee)
 
 
-Employee_obj = Employee(1, "Arslan", "PM", 500, 1, "none")
-Employee_List.append(Employee_obj)
+#Employee_obj = Employee(1, "Arslan", "PM", 500, 1, "none")
+#Employee_List.append(Employee_obj)
 i = 1
 while i > 0:
     print("Enter Your Desiger Value for Search\n 1 - Add New Employee\n 2 - Search All Employees")
