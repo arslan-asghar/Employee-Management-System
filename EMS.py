@@ -1,3 +1,4 @@
+import datetime
 # This is an employee class and it is a parent class
 # This function will get only integer value
 employee_designations = ("Manager", "Supervisor", "Supervisor Backup", "Sales Man", "Office Boy")
@@ -149,8 +150,13 @@ def add_employee():
     print("            Create new employee")
     print("--------------------------------------------")
     name = input("Enter Name :")
-    # roll = input("Enter Employee designation : ")
+
     roll = designation()
+    dat = datetime.datetime.now()
+    print(dat.year, "/", dat.day, "/", dat.strftime("%A"))
+
+    print(dat)
+    print(dat.month)
 
     experience = 0
     salary = input_number("Enter your salary")
@@ -189,8 +195,6 @@ while i > 0:
     elif search_value == 5:
         obj = EmployeeGeneral()
         obj.manager_remarks(Employee_List)
-
-
 
     else:
         print("you chosen wrong value")
