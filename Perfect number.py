@@ -10,7 +10,7 @@ def integer_number(msg):
             break
 
 
-print("-------------------------------------------------\n           Prime numbers string")
+print("-------------------------------------------------\n           ُPerfect Numbers")
 print("-------------------------------------------------")
 print("Find the prime numbers\n1 - Full number of string till your input value\n2 - For individual number")
 choice = integer_number("Enter your choice : ")
