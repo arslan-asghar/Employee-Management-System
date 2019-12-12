@@ -1,3 +1,6 @@
+import math
+
+
 def integer_number(msg):
     while True:
         try:
@@ -12,32 +15,37 @@ def integer_number(msg):
 
 print("-------------------------------------------------\n           ُPerfect Numbers")
 print("-------------------------------------------------")
-print("Find the prime numbers\n1 - Full number of string till your input value\n2 - For individual number")
-choice = integer_number("Enter your choice : ")
 
-if choice == 1:
-    va = integer_number("Enter your value : ")
-    print("-------------------------------------------------\n           String of PRIME numbers till ", va)
-    print("-------------------------------------------------")
-    for i in range(va):
-        if i%2 != 0 and i%3 != 0 and i > 3:
-            print(i, end=" ")
-        elif i < 3:
-            print(i, end=" ")
-        else:
-            pass
-    print("-------------------------------------------------")
+va = integer_number("Enter your value : ")
+list_of_perfect_numbers = [1]
 
-elif choice == 2:
-    i = integer_number("Enter your value : ")
+perfect = (va/2)+1
 
-    print("-------------------------------------------------\n           Is", i, "a prime number? ")
-    print("-------------------------------------------------")
-    if i % 2 != 0 and i % 3 != 0 and i > 3:
-        print(i, end=" Is a prime number")
-    else:
-        print(i, end=" Is NOT a prime number")
-    print("\n-------------------------------------------------")
+if perfect % 2 != 0 and perfect % 3 != 0:
+    perfect = int(perfect - 0.5)
 else:
-    print("you chosed rong value")
+    perfect = int(perfect)
+
+
+perfect_number = 1
+for i in range(perfect):
+    if i > 1:
+        if va % i == 0:
+            perfect_number = perfect_number + i
+            list_of_perfect_numbers.append(i)
+
+if perfect_number == va:
+
+    for i in list_of_perfect_numbers:
+        if i != perfect_number/2:
+            print(i, end=" + ")
+        else:
+            print(i, end=" = ")
+    print(perfect_number)
+    print("YES", va, "is a perfect number")
+else:
+
+    print("NO", va, "is not a perfect number")
+print("-------------------------------------------------")
+
 
